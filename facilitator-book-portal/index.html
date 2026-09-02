@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>👩‍🏫 EduQuest - 100-Page Customizable Facilitator Portal Template</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/facilitator.css">
+    <link rel="stylesheet" href="css/game-styles.css">
+</head>
+<body>
+    <!-- ==========================================
+         TOP FACILITATOR HEADER
+         ========================================== -->
+    <header class="fac-header">
+        <div class="fac-brand" id="brandLogo" title="Back to Facilitator Dashboard">
+            <span class="fac-brand-icon">🎓</span>
+            <div>
+                <div class="fac-brand-title">EduQuest Portal</div>
+                <div class="fac-brand-subtitle" id="headerBookSubtitle">100-Page Core Phonics & Literacy Curriculum Book</div>
+            </div>
+        </div>
+
+        <div class="fac-header-center">
+            <div class="fac-search-box">
+                <span class="fac-search-icon">🔍</span>
+                <input type="text" id="searchInput" class="fac-search-input" placeholder="Search page (e.g. 11), topic, or skill...">
+            </div>
+        </div>
+
+        <div class="fac-header-user">
+            <button id="btnOpenTemplateEditor" class="btn-back-dashboard" style="background: rgba(250, 204, 21, 0.15); border-color: #facc15; color: #fef08a;" title="Customize Book Template, Pages, and Activities">
+                <span>⚙️</span> Template Settings
+            </button>
+            <div class="fac-badge-pill" id="headerClassBadge">
+                <span>👩‍🏫</span> Class 1-A (24 Learners)
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         MAIN FACILITATOR CONTAINER
+         ========================================== -->
+    <main class="fac-main-container">
+        
+        <!-- ==========================================
+             VIEW 1: FACILITATOR DASHBOARD (100-PAGE GRID)
+             ========================================== -->
+        <div id="dashboardView">
+            <!-- Metrics Bar -->
+            <div class="fac-metrics-grid">
+                <div class="fac-metric-card">
+                    <div class="fac-metric-icon">📖</div>
+                    <div>
+                        <div class="fac-metric-val">100</div>
+                        <div class="fac-metric-label">Curriculum Pages</div>
+                    </div>
+                </div>
+
+                <div class="fac-metric-card">
+                    <div class="fac-metric-icon">🎮</div>
+                    <div>
+                        <div class="fac-metric-val">142</div>
+                        <div class="fac-metric-label">Total Activities & Games</div>
+                    </div>
+                </div>
+
+                <div class="fac-metric-card">
+                    <div class="fac-metric-icon">🫧</div>
+                    <div>
+                        <div class="fac-metric-val">Page 11</div>
+                        <div class="fac-metric-label">Featured Bubble Quest</div>
+                    </div>
+                </div>
+
+                <div class="fac-metric-card">
+                    <div class="fac-metric-icon">🌟</div>
+                    <div>
+                        <div class="fac-metric-val">94%</div>
+                        <div class="fac-metric-label">Class Engagement</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Units Filter Bar -->
+            <div style="margin: 20px 0 10px 0;">
+                <div style="font-size: 0.85rem; font-weight: 800; color: #94a3b8; text-transform: uppercase; margin-bottom: 8px;">Filter by Unit:</div>
+                <div class="fac-units-bar" id="unitsTabsContainer">
+                    <!-- Populated dynamically via JS -->
+                </div>
+            </div>
+
+            <!-- Curriculum Header -->
+            <div class="fac-curriculum-header" style="margin: 16px 0 12px 0;">
+                <h2 class="fac-curriculum-title">
+                    <span>📚</span> 100-Page Activities Master List
+                </h2>
+                <div style="font-size: 0.9rem; color: #94a3b8;">
+                    Click any page to select and launch its interactive activities.
+                </div>
+            </div>
+
+            <!-- 100 Pages Interactive Grid -->
+            <div class="pages-grid" id="pagesGridContainer">
+                <!-- Populated dynamically via JS -->
+            </div>
+        </div>
+
+        <!-- ==========================================
+             VIEW 2: PAGE ACTIVITY SELECTION HUB
+             ========================================== -->
+        <div id="pageDetailView" class="fac-page-view">
+            <div class="page-view-header">
+                <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+                    <button class="btn-back-dashboard" id="btnBackToDashboard">
+                        <span>◀</span> Back to 100 Pages
+                    </button>
+                    <div class="page-view-info">
+                        <div class="page-view-num" id="pageDetailNum">Page 11 • Unit 2: Consonants</div>
+                        <h1 class="page-view-title" id="pageDetailTitle">The Consonant Bramble Glade</h1>
+                    </div>
+                </div>
+
+                <div>
+                    <button class="btn-back-dashboard" id="btnEditCurrentPage" style="border-color: #38bdf8; color: #7dd3fc;" title="Edit This Page in Template Studio">
+                        <span>✏️</span> Edit Page Details
+                    </button>
+                </div>
+            </div>
+
+            <!-- Facilitator Teaching Script & Objective -->
+            <div class="facilitator-guide-box">
+                <div class="facilitator-guide-title">
+                    <span>💡</span> Facilitator Learning Objective & Teaching Script
+                </div>
+                <div class="facilitator-guide-text" id="pageDetailGuide">
+                    Learners will demonstrate consonant recognition and vowel discrimination through interactive sorting gameplay.
+                </div>
+            </div>
+
+            <!-- Activities Available On This Page -->
+            <div>
+                <h2 style="font-family: 'Fredoka', sans-serif; font-size: 1.4rem; color: #facc15; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                    <span>🎮</span> Select Activity for This Page:
+                </h2>
+                <div class="activities-selection-grid" id="pageActivitiesList">
+                    <!-- Populated dynamically via JS -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ==========================================
+         ACTIVITY / GAME RUNNER MODAL
+         ========================================== -->
+    <div id="gameRunnerModal" class="game-runner-modal">
+        <div class="game-runner-window">
+            <div class="game-runner-topbar">
+                <div class="game-runner-title" id="runnerTitle">
+                    <span>🎮</span> Activity Player
+                </div>
+                <button class="btn-close-runner" id="btnCloseRunner" title="Close Game">✕</button>
+            </div>
+            <div class="game-runner-body" id="runnerBody">
+                <!-- Mounted dynamically by activity-runner.js -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         TEMPLATE CUSTOMIZER STUDIO MODAL
+         ========================================== -->
+    <div id="templateEditorModal" class="template-editor-modal">
+        <div class="editor-modal-card">
+            <div class="editor-modal-topbar">
+                <div class="editor-modal-title">
+                    <span>⚙️</span> 100-Page Book Template Customizer
+                </div>
+                <button class="btn-close-runner" id="btnCloseTemplateEditor" title="Close">✕</button>
+            </div>
+
+            <!-- Editor Navigation Tabs -->
+            <div class="editor-tabs-bar">
+                <button type="button" class="editor-tab-btn active" data-tab="book-info">📖 Book Info & Metadata</button>
+                <button type="button" class="editor-tab-btn" data-tab="page-edit">📄 100-Page & Activities Editor</button>
+                <button type="button" class="editor-tab-btn" data-tab="json-io">💾 Import / Export JSON</button>
+            </div>
+
+            <div class="editor-modal-body">
+                
+                <!-- TAB 1: BOOK META -->
+                <div class="editor-tab-content active" id="tab-book-info">
+                    <div class="editor-form-grid">
+                        <div class="editor-form-group full-width">
+                            <label class="editor-label">Book Title</label>
+                            <input type="text" id="editBookTitle" class="editor-input" placeholder="e.g. The Secret of the Phonics Forest">
+                        </div>
+
+                        <div class="editor-form-group full-width">
+                            <label class="editor-label">Book Subtitle / Description</label>
+                            <input type="text" id="editBookSubtitle" class="editor-input" placeholder="100-Page Core Phonics & Literacy Curriculum Book">
+                        </div>
+
+                        <div class="editor-form-group">
+                            <label class="editor-label">Subject Area</label>
+                            <input type="text" id="editSubject" class="editor-input" placeholder="Phonics / Reading / Math">
+                        </div>
+
+                        <div class="editor-form-group">
+                            <label class="editor-label">Facilitator Name</label>
+                            <input type="text" id="editFacilitator" class="editor-input" placeholder="Teacher Name">
+                        </div>
+
+                        <div class="editor-form-group">
+                            <label class="editor-label">Class Name / Grade</label>
+                            <input type="text" id="editClassName" class="editor-input" placeholder="Class 1-A (24 Learners)">
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 14px;">
+                        <button type="button" id="btnSaveBookMeta" class="btn-primary-action">💾 Save Book Metadata</button>
+                    </div>
+                </div>
+
+                <!-- TAB 2: PAGE & ACTIVITIES EDITOR -->
+                <div class="editor-tab-content" id="tab-page-edit">
+                    <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 12px;">
+                        <label class="editor-label" style="font-size: 1rem; color: #facc15;">Select Page to Edit:</label>
+                        <select id="selectEditPageNum" class="editor-select" style="font-weight: 800; min-width: 200px;">
+                            <!-- Populated dynamically (Pages 1 to 100) -->
+                        </select>
+                    </div>
+
+                    <div class="editor-form-grid">
+                        <div class="editor-form-group full-width">
+                            <label class="editor-label">Page Title</label>
+                            <input type="text" id="editPageTitle" class="editor-input" placeholder="Page Title">
+                        </div>
+
+                        <div class="editor-form-group full-width">
+                            <label class="editor-label">Facilitator Learning Objective</label>
+                            <textarea id="editPageObjective" class="editor-textarea" rows="2" placeholder="Learning objectives for this page..."></textarea>
+                        </div>
+
+                        <div class="editor-form-group full-width">
+                            <label class="editor-label">Teaching Script & Tips</label>
+                            <textarea id="editPageTips" class="editor-textarea" rows="2" placeholder="Facilitator teaching script..."></textarea>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 16px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <label class="editor-label" style="font-size: 0.95rem; color: #facc15;">Activities On This Page:</label>
+                            <button type="button" id="btnAddPageActivity" class="btn-primary-action" style="font-size: 0.82rem; padding: 4px 10px;">+ Add Activity</button>
+                        </div>
+
+                        <div id="editorActivitiesContainer">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 14px;">
+                        <button type="button" id="btnSavePageDetails" class="btn-primary-action">💾 Save Page Changes</button>
+                    </div>
+                </div>
+
+                <!-- TAB 3: IMPORT / EXPORT JSON -->
+                <div class="editor-tab-content" id="tab-json-io">
+                    <p style="font-size: 0.9rem; color: #94a3b8; line-height: 1.4;">
+                        Export the entire 100-page book curriculum template to a reusable JSON file, or upload a JSON template to instantly reconfigure the portal.
+                    </p>
+
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin: 10px 0;">
+                        <button type="button" id="btnDownloadJson" class="btn-primary-action">💾 Download Template (JSON)</button>
+                        <button type="button" id="btnUploadJsonFile" class="btn-primary-action" style="background: linear-gradient(135deg, #0284c7, #0369a1);">📂 Upload Template (JSON)</button>
+                        <input type="file" id="fileInputJson" accept=".json" style="display: none;">
+                        <button type="button" id="btnResetDefaultTemplate" class="btn-danger-action">🔄 Reset to Default 100-Page Book</button>
+                    </div>
+
+                    <div>
+                        <label class="editor-label" style="margin-bottom: 4px; display: block;">Live JSON Template Code:</label>
+                        <textarea id="jsonTemplateArea" class="json-textarea" spellcheck="false"></textarea>
+                    </div>
+
+                    <div style="margin-top: 10px;">
+                        <button type="button" id="btnApplyJsonText" class="btn-primary-action">✔️ Apply JSON Changes</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/audio.js"></script>
+    <script src="js/topics.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/game-engine.js"></script>
+    <script src="js/curriculum-100-pages.js"></script>
+    <script src="js/template-manager.js"></script>
+    <script src="js/template-editor.js"></script>
+    <script src="js/activity-runner.js"></script>
+    <script src="js/facilitator-app.js"></script>
+</body>
+</html>
